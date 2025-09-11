@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8" />
@@ -25,43 +25,93 @@
 
 <body>
 
-    <!-- navbar -->
-    <nav class="container mx-auto w-11/12 lg:w-10/12">
-        <div class="navbar bg-base-100 lg:py-8">
-            <div class="flex-1">
-                <a class="btn btn-ghost text-xs lg:text-4xl uppercase gap-0">Sc<img class="lg:h-12 h-5"
-                        src="images/logo.png" />by</a>
+    <header>
+        <!-- navbar -->
+        <nav class="container mx-auto w-11/12 lg:w-10/12">
+            <div class="navbar bg-base-100 lg:py-8">
+                <div class="flex-1">
+                    <a class="btn btn-ghost text-xs lg:text-4xl uppercase gap-0">Sc<img class="lg:h-12 h-5"
+                            src="images/logo.png" />by</a>
+                </div>
+                <div class="flex-none gap-1 lg:gap-4">
+                    <div class="tooltip tooltip-bottom" data-tip="Home">
+                        <button class="btn btn-ghost btn-circle bg-[#12132D] bg-opacity-10 lg:btn-lg btn-xs">
+                            <i class="fa fa-home"></i>
+                        </button>
+                    </div>
+                    <div class="tooltip tooltip-bottom" data-tip="Edit">
+                        <button class="btn btn-ghost btn-circle bg-[#12132D] bg-opacity-10 lg:btn-lg btn-xs">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                    </div>
+                    <div onclick="AddButton()" class="tooltip tooltip-bottom" data-tip="Add">
+                        <button class="btn btn-ghost btn-circle bg-[#12132D] bg-opacity-10 lg:btn-lg btn-xs">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </button>
+                    </div>
+                    <div class="tooltip tooltip-bottom" data-tip="Marked">
+                        <button class="btn btn-ghost btn-circle bg-[#12132D] bg-opacity-10 lg:btn-lg btn-xs">
+                            <i class="fa-regular fa-flag"></i>
+                        </button>
+                    </div>
+                    <button
+                        class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg rounded-full lg:px-20 px-4 bg-primary text-white hover:text-primary hover:bg-gray-200 border-none">
+                        Sign In
+                    </button>
+                </div>
             </div>
-            <div class="flex-none gap-1 lg:gap-4">
-                <div class="tooltip tooltip-bottom" data-tip="Home">
-                    <button class="btn btn-ghost btn-circle bg-[#12132D] bg-opacity-10 lg:btn-lg btn-xs">
-                        <i class="fa fa-home"></i>
-                    </button>
-                </div>
-                <div class="tooltip tooltip-bottom" data-tip="Edit">
-                    <button class="btn btn-ghost btn-circle bg-[#12132D] bg-opacity-10 lg:btn-lg btn-xs">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
-                </div>
-                <div onclick="AddButton()" class="tooltip tooltip-bottom" data-tip="Add">
-                    <button class="btn btn-ghost btn-circle bg-[#12132D] bg-opacity-10 lg:btn-lg btn-xs">
-                        <i class="fa-solid fa-user-plus"></i>
-                    </button>
-                </div>
-                <div class="tooltip tooltip-bottom" data-tip="Marked">
-                    <button class="btn btn-ghost btn-circle bg-[#12132D] bg-opacity-10 lg:btn-lg btn-xs">
-                        <i class="fa-regular fa-flag"></i>
-                    </button>
-                </div>
-                <button
-                    class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg rounded-full lg:px-20 px-4 bg-primary text-white hover:text-primary hover:bg-gray-200 border-none">
-                    Sign In
-                </button>
-            </div>
-        </div>
-    </nav>
-    <!-- navbar end -->
+        </nav>
+        <!-- navbar end -->
+    </header>
+    <!--  -->
 
+    <main>
+        <!-- hero section -->
+        <section class="container mx-auto w-11/12 lg:w-10/12">
+            <div class="hero min-h-96 rounded-3xl" style="background-image: url(./images/bg.png)">
+                <div class="hero-overlay rounded-3xl lg:block hidden">
+                    <img class="w-full h-full" src="./images/bgbanner.png" alt="" />
+                </div>
+                <div class="hero-content text-neutral-content py-12 lg:py-48 lg:flex-row flex-col gap-8 lg:gap-14">
+                    <div class="lg:max-w-lg lg:space-y-8">
+                        <h1 class="mb-5 text-3xl font-extrabold lg:text-6xl">
+                            Welcome to the
+                            <span
+                                class="bg-gradient-to-r from-primary to-black-100 text-transparent bg-clip-text">ScOOby
+                            </span>Forum
+                        </h1>
+                        <p class="mb-5 lg:text-xl text-lg font-light">
+                            Here you can filter the posts by the latest, most popular, and
+                            other type of categories, also enjoy the modern aesthetic
+                            design.
+                        </p>
+                        <label class="input input-bordered flex items-center gap-2 w-4/5 rounded-full lg:py-8">
+                            <input id="searchPosts" type="text" class="grow" placeholder="Search Here Anything..." />
+                            <button onclick="handleSearchByCategory()" id="searchPostsBtn"
+                                class="btn rounded-full bg-primary text-white hover:text-primary hover:bg-blue-950">
+                                Search
+                            </button>
+                        </label>
+                    </div>
+                    <div
+                        class="lg:max-w-md bg-white h-44 lg:h-52 lg:min-w-80 w-4/5 rounded-3xl flex flex-row items-center justify-evenly *:text-black lg:text-lg text-xs">
+                        <div class="flex flex-col gap-5">
+                            <p>Registered Users</p>
+                            <p>Forum</p>
+                            <p>Topics</p>
+                            <p>Replies</p>
+                        </div>
+                        <div class="flex flex-col gap-5">
+                            <p>01</p>
+                            <p>05</p>
+                            <p>01</p>
+                            <p>01</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
 
 
