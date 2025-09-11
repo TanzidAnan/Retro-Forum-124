@@ -111,10 +111,63 @@
                 </div>
             </div>
         </section>
+
+        <!-- discussion section -->
+        <section class="container mx-auto w-11/12 lg:w-10/12 my-12 lg:my-24">
+            <div class="flex lg:w-2/5 mx-auto flex-col items-center justify-center space-y-8 lg:my-12">
+                <h2 class="text-3xl lg:text-5xl font-bold text-center">
+                    Let's Discuss
+                </h2>
+                <p class="opacity-60 text-center lg:text-xl">
+                    With the modern design and the latest features, you can discuss
+                    whatever you want and see other people's opinions or discussions,
+                    also you can see by categories and mark as read.
+                </p>
+            </div>
+            <!-- discussions with selections -->
+            <div class="flex lg:flex-row flex-col gap-8 my-12">
+                <div id="post-container" class="lg:w-8/12 space-y-5">
+                    <!-- demo card showing without dynamic value  -->
+
+
+
+                    <div class="flex w-full justify-center">
+                        <span id="postLoader"
+                            class="loading loading-spinner loading-lg lg:mt-24 text-primary hidden"></span>
+                    </div>
+                    <!-- dynamic content -->
+                </div>
+                <div class="lg:w-4/12">
+                    <div class="p-6 space-y-4 bg-[#F3F3F5] rounded-3xl">
+                        <div class="flex items-center justify-between">
+                            <h4 class="font-bold text-xl">Title</h4>
+                            <p class="opacity-50">
+                                <i class="fa-solid fa-check-double text-green-500"></i> Mark
+                                as read (<span id="markAsReadCounter">0</span>)
+                            </p>
+                        </div>
+                        <div class="space-y-4 *:opacity-70" id="markAsReadContainer">
+                            <!-- dynamic content -->
+                            <!-- <div class="flex justify-between p-2 lg:p-3 bg-white rounded-2xl items-center gap-3">
+                  <div class="lg:w-4/5 w-11/12">
+                    <p></p>
+                    <div class="lg:w-1/5 w-4/12 flex justify-end ">
+                      <p><i class="fa-solid fa-cart-shopping"></i></p>
+                    </div>
+                  </div>
+                </div> -->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
 
 
+    <script src="script.js"></script>
 </body>
 
 </html>
