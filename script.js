@@ -1,18 +1,18 @@
-const loadAllPost=async(category) =>{
-    // console.log(category)
-    if(category){
+const loadAllPost = async (category) => {
+  // console.log(category)
+  if (category) {
 
-    }
-    const res =await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts${category?`?category=${category}`:''}`);
-    const data =await res.json();
-    displayAllPost(data.posts)
+  }
+  const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts${category ? `?category=${category}` : ''}`);
+  const data = await res.json();
+  displayAllPost(data.posts)
 }
 
-const displayAllPost=(posts) =>{
-    const postContainer =document.getElementById('post-container');
-    posts.forEach(post => {
-        const div =document.createElement('div');
-        div.innerHTML =`
+const displayAllPost = (posts) => {
+  const postContainer = document.getElementById('post-container');
+  posts.forEach(post => {
+    const div = document.createElement('div');
+    div.innerHTML = `
         
         <div class="p-6 lg:p-12 flex lg:flex-row flex-col items-center lg:items-start
       bg-slate-300 rounded-3xl">
@@ -57,17 +57,17 @@ const displayAllPost=(posts) =>{
       </div>
       </div>
         `;
-        postContainer.appendChild(div)
-    });
+    postContainer.appendChild(div)
+  });
 }
 
 // data-post=${JSON.stringify(post)}
 
-const markAsRead=(description,view_count) =>{
-  console.log(description,view_count);
-  const markAsReadContainer =document.getElementById('markAsReadContainer');
-  const div =document.createElement('div');
-  div.innerHTML =`
+const markAsRead = (description, view_count) => {
+  console.log(description, view_count);
+  const markAsReadContainer = document.getElementById('markAsReadContainer');
+  const div = document.createElement('div');
+  div.innerHTML = `
   <div class="flex justify-between px-5 lg:p-3 bg-white rounded-2xl items-center gap-3">
             <div class="lg:w-4/5 w-11/12 ">
                 <p>${description}</p>
@@ -77,13 +77,23 @@ const markAsRead=(description,view_count) =>{
             </div>
         </div>
   `;
-  markAsReadContainer.appendChild(div)
+  markAsReadContainer.appendChild(div);
+  handleCount()
 }
 
-const handleSearchByCategory=() =>{
-    const searchText =document.getElementById('searchPosts').value;
-    console.log(searchText)
-    loadAllPost(searchText)
+const handleCount = () => {
+  const prevCount = document.getElementById('markAsReadCounter').innerText;
+  const converToCounter = parseInt(prevCount);
+  const sum = converToCounter + 1;
+  document.getElementById('markAsReadCounter').innerText = sum;
+
+
+}
+
+const handleSearchByCategory = () => {
+  const searchText = document.getElementById('searchPosts').value;
+  console.log(searchText)
+  loadAllPost(searchText)
 }
 
 loadAllPost()
