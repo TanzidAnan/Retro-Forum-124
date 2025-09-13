@@ -106,7 +106,17 @@ const addProduct = () => {
     const name = document.getElementById('product-name').value;
     const qty = document.getElementById('product-quantity').value;
     console.log("Product:", name, "Quantity:", qty);
+    displayData(name,qty)
 };
+
+const displayData=(name,qty) =>{
+    const ulContent =document.getElementById('list-container');
+    const li =document.createElement('li');
+    li.innerText = `name ${name} and ${qty}`;
+
+    ulContent.appendChild(li)
+}
+
 
 // reload page persistence
 window.addEventListener("DOMContentLoaded", () => {
