@@ -1,15 +1,15 @@
 const loadAllPost = async (category) => {
-  document.getElementById('post-container').innerHTML ='';
-  const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts${category ? `?category=${category}` : ''}`);
-  const data = await res.json();
-  displayAllPost(data.posts)
+    document.getElementById('post-container').innerHTML = '';
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts${category ? `?category=${category}` : ''}`);
+    const data = await res.json();
+    displayAllPost(data.posts)
 }
 
 const displayAllPost = (posts) => {
-  const postContainer = document.getElementById('post-container');
-  posts.forEach(post => {
-    const div = document.createElement('div');
-    div.innerHTML = `
+    const postContainer = document.getElementById('post-container');
+    posts.forEach(post => {
+        const div = document.createElement('div');
+        div.innerHTML = `
         <div class="p-6 lg:p-12 flex lg:flex-row flex-col items-center lg:items-start bg-slate-300 rounded-3xl">
           <div class="indicator ">
             <div class="avatar mr-8">
@@ -50,30 +50,30 @@ const displayAllPost = (posts) => {
           </div>
         </div>
     `;
-    postContainer.appendChild(div)
-  });
+        postContainer.appendChild(div)
+    });
 }
 
 // markAsRead function with localStorage persistence
 const markAsRead = (description, view_count) => {
-  console.log(description, view_count);
+    console.log(description, view_count);
 
-  // save to localStorage
-  let savedPosts = JSON.parse(localStorage.getItem("markedPosts")) || [];
-  const newPost = { description, view_count };
-  savedPosts.push(newPost);
-  localStorage.setItem("markedPosts", JSON.stringify(savedPosts));
+    // save to localStorage
+    let savedPosts = JSON.parse(localStorage.getItem("markedPosts")) || [];
+    const newPost = { description, view_count };
+    savedPosts.push(newPost);
+    localStorage.setItem("markedPosts", JSON.stringify(savedPosts));
 
-  // display in DOM
-  displayMarkedPost(newPost);
-  handleCount();
+    // display in DOM
+    displayMarkedPost(newPost);
+    handleCount();
 }
 
 // helper function to display marked posts
 const displayMarkedPost = (post) => {
-  const markAsReadContainer = document.getElementById('markAsReadContainer');
-  const div = document.createElement('div');
-  div.innerHTML = `
+    const markAsReadContainer = document.getElementById('markAsReadContainer');
+    const div = document.createElement('div');
+    div.innerHTML = `
     <div class="flex justify-between px-5 lg:p-3 bg-white rounded-2xl items-center gap-3">
       <div class="lg:w-4/5 w-11/12 ">
         <p>${post.description}</p>
@@ -83,22 +83,22 @@ const displayMarkedPost = (post) => {
       </div>
     </div>
   `;
-  markAsReadContainer.appendChild(div);
+    markAsReadContainer.appendChild(div);
 }
 
 // counter function
 const handleCount = () => {
-  const prevCount = document.getElementById('markAsReadCounter').innerText;
-  const converToCounter = parseInt(prevCount);
-  const sum = converToCounter + 1;
-  document.getElementById('markAsReadCounter').innerText = sum;
+    const prevCount = document.getElementById('markAsReadCounter').innerText;
+    const converToCounter = parseInt(prevCount);
+    const sum = converToCounter + 1;
+    document.getElementById('markAsReadCounter').innerText = sum;
 }
 
 // search handler
 const handleSearchByCategory = () => {
-  const searchText = document.getElementById('searchPosts').value;
-  console.log(searchText)
-  loadAllPost(searchText)
+    const searchText = document.getElementById('searchPosts').value;
+    console.log(searchText)
+    loadAllPost(searchText)
 }
 
 // add product function
@@ -106,39 +106,54 @@ const addProduct = () => {
     const name = document.getElementById('product-name').value;
     const qty = document.getElementById('product-quantity').value;
     console.log("Product:", name, "Quantity:", qty);
-    displayData(name,qty)
+    displayData(name, qty);
+    saveproductToLocalStorage(name, qty)
 };
 
-const displayData=(name,qty) =>{
-    const ulContent =document.getElementById('list-container');
-    const li =document.createElement('li');
+const displayData = (name, qty) => {
+    const ulContent = document.getElementById('list-container');
+    const li = document.createElement('li');
     li.innerText = `name ${name} and ${qty}`;
 
-    ulContent.appendChild(li)
+    ulContent.appendChild(li);
 }
 
 
-const getStoredShoppingCard =() =>{
-    const storeCard =localStorage.getItem('cart');
-    let cart ={}
-    if(storeCard){
-        cart=JSON.parse(storeCard)
+const getStoredShoppingCard = () => {
+    const storeCard = localStorage.getItem('cart');
+    let cart = {}
+    if (storeCard) {
+        cart = JSON.parse(storeCard)
     }
     return cart
 }
 
-const saveproductToLocalStorage =(product,quantity) =>{
+const saveproductToLocalStorage = (product, quantity) => {
+    const cart = getStoredShoppingCard();
+    cart[product] =quantity;
+    const cartStringified =JSON.stringify(cart);
+    localStorage.setItem('cart',cartStringified)
 
 }
 
+const displayProductLocalStrog =() =>{
+    const saveCart =getStoredShoppingCard();
+    for(const product in saveCart){
+        const quentati =saveCart[product]
+        displayData(product,quentati)
+    }
+
+}
+displayProductLocalStrog()
+
 // reload page persistence
 window.addEventListener("DOMContentLoaded", () => {
-  let savedPosts = JSON.parse(localStorage.getItem("markedPosts")) || [];
-  savedPosts.forEach(post => displayMarkedPost(post));
+    let savedPosts = JSON.parse(localStorage.getItem("markedPosts")) || [];
+    savedPosts.forEach(post => displayMarkedPost(post));
 
-  // update counter
-  document.getElementById('markAsReadCounter').innerText = savedPosts.length;
+    // update counter
+    document.getElementById('markAsReadCounter').innerText = savedPosts.length;
 
-  // initial load posts
-  loadAllPost();
+    // initial load posts
+    loadAllPost();
 });
