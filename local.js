@@ -118,6 +118,19 @@ const displayData=(name,qty) =>{
 }
 
 
+const getStoredShoppingCard =() =>{
+    const storeCard =localStorage.getItem('cart');
+    let cart ={}
+    if(storeCard){
+        cart=JSON.parse(storeCard)
+    }
+    return cart
+}
+
+const saveproductToLocalStorage =(product,quantity) =>{
+
+}
+
 // reload page persistence
 window.addEventListener("DOMContentLoaded", () => {
   let savedPosts = JSON.parse(localStorage.getItem("markedPosts")) || [];
